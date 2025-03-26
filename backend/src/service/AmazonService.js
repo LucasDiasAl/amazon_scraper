@@ -3,21 +3,20 @@ import {JSDOM} from 'jsdom';
 import Product from "../model/Product.js";
 import Fetch from "../queries/Fetch.js";
 
-class ProductService {
-    constructor(keyword) {
-        this.keyword = keyword;
+class AmazonService {
+    constructor() {
         this.baseUrl = "https://www.amazon.com/s?k=";
         this.useAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     }
 
-    async #fetchHTML() {
-        const formattedUrl = Fetch.formatUrl(this.baseUrl,  this.keyword);
+    async fetchHTML(keyword) {
+        const formattedUrl = Fetch.formatUrl(this.baseUrl,  keyword);
         return await Fetch.data(formattedUrl, {
             "User-Agent": this.useAgent
         });
     }
 
-    #parseHTML(html) {
+    parseHTML(html) {
         const dom = new JSDOM(html);
         const document = dom.window.document;
 
@@ -34,8 +33,10 @@ class ProductService {
         return products;
     }
 
-    async scrape() {
-        const html = await this.#fetchHTML();
-        return this.#parseHTML(html);
+    async scrapeAmazon(keyword) {
+        const html = await this.fetchHTML(keyword);
+        return this.parseHTML(html);
     }
 }
+
+export default AmazonService;
