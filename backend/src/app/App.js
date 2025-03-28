@@ -1,5 +1,6 @@
 import express from "express"
 import router from "../routes/ProductRoutes.js"
+import "bun";
 
 class App {
     constructor() {
@@ -8,11 +9,12 @@ class App {
         this.app.use("/scrape", this.router);
         this.app.use(express.json());
         this.instance = null;
+        this.port = process.env["PORT "] || 3000
     }
 
     start() {
         try {
-            this.instance = this.app.listen(3000, () => {
+            this.instance = this.app.listen(this.port, () => {
                 console.log(`Servidor rodando na porta http://localhost:${3000}`);
             });
         } catch (error) {
