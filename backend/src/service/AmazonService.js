@@ -10,7 +10,7 @@ class AmazonService {
     }
 
     async fetchHTML(keyword) {
-        const formattedUrl = Fetch.formatUrl(this.baseUrl,  keyword);
+        const formattedUrl = this.baseUrl.concat(encodeURIComponent(keyword))
         return await Fetch.data(formattedUrl, {
             "User-Agent": this.useAgent
         });
