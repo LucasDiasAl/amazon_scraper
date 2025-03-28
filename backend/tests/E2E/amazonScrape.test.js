@@ -2,8 +2,8 @@ import {describe, it, expect, beforeEach, afterEach, vi} from "vitest";
 import { fetch } from "undici";
 import App from "../../src/app/App.js";
 import AmazonService from "../../src/service/AmazonService.js";
-import mockHTML from "../unit/mocks/mocks2.js";
-import mockArray from "../unit/mocks/mocks1.js";
+import mockHTML from "../mocks/htmlMock.js";
+import mockArray from "../mocks/fetchResultsMock.js";
 import Product from "../../src/model/Product.js";
 
 describe("AmazonController E2E Tests", () => {

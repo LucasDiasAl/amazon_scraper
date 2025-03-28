@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import AmazonService from "../../src/service/AmazonService.js";
-import mockHTML from "./mocks/mocks2.js";
-import mockArray from "./mocks/mocks1.js";
+import mockHTML from "../mocks/htmlMock.js";
+import mockArray from "../mocks/fetchResultsMock.js";
 import Product from "../../src/model/Product.js";
 import AmazonController from "../../src/controller/AmazonController.js";
 
