@@ -2,22 +2,28 @@ import express from "express"
 import router from "../routes/ProductRoutes.js"
 
 class App {
-    constructor(port) {
+    constructor() {
         this.app = express();
-        this.port = port;
         this.router = router;
         this.app.use("/scrape", this.router);
+        this.app.use(express.json());
+        this.instance = null;
     }
 
     start() {
         try {
-            this.app.listen(this.port, () => {
-                console.log(`Servidor rodando na porta http://localhost:${this.port}`);
+            this.instance = this.app.listen(3000, () => {
+                console.log(`Servidor rodando na porta http://localhost:${3000}`);
             });
         } catch (error) {
             console.error("Erro ao iniciar o servidor:", error.message);
         }
-        console.log("server is running o port 3000")
+    }
+
+    close() {
+        if(this.instance) {
+            this.instance.close();
+        }
     }
 }
 

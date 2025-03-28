@@ -20,13 +20,15 @@ class AmazonService {
         const dom = new JSDOM(html);
         const document = dom.window.document;
 
-        const listItemsDiv = document.querySelector('[data-component-type="s-search-results"]');
+        const listItemsDiv = document.querySelector('[data-component-type="s-search-results"]') || null;
+
+        if(!listItemsDiv) return null;
 
         const products = Array.from(listItemsDiv.querySelectorAll('[cel_widget_id^="MAIN-SEARCH_RESULTS-"]')).map(item => {
             const title = item.querySelector('[data-cy="title-recipe"] h2 span')?.textContent || "N/A Title";
             const starRating = item.querySelector('[data-cy="reviews-ratings-slot"] span')?.textContent || "N/A Rating";
             const numberOfReviews = item.querySelector('[data-component-type="s-client-side-analytics"] span')?.textContent || "N/A Number of reviews"
-            const imgUrl = item.querySelector('img.s-image')?.getAttribute("src") || "N/A Title";
+            const imgUrl = item.querySelector('img.s-image')?.getAttribute("src") || "N/A Image";
 
             return new Product(title, starRating, numberOfReviews, imgUrl);
             });
