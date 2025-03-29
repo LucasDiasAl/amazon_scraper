@@ -9,13 +9,13 @@ class App {
         this.app.use("/scrape", this.router);
         this.app.use(express.json());
         this.instance = null;
-        this.port = process.env["PORT "] || 3000
+        this.port = process.env["PORT"] || 3000
     }
 
     start() {
         try {
             this.instance = this.app.listen(this.port, () => {
-                console.log(`Servidor rodando na porta http://localhost:${3000}`);
+                console.log(`Servidor rodando na porta http://localhost:${this.port}`);
             });
         } catch (error) {
             console.error("Erro ao iniciar o servidor:", error.message);

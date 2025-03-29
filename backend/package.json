@@ -17,6 +17,7 @@
     "jsdom": "^26.0.0"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "start": "bun run index.js"
   }
 }
