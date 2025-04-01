@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "module": "src/index.js",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "vitest": "^3.0.9",
+    "@vitest/coverage-v8": "^3.0.9",
+    "undici": "^7.6.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "express": "^4.21.2",
+    "jsdom": "^26.0.0"
+  },
+  "scripts": {
+    "test": "vitest",
+    "start": "bun run index.js"
+  }
+}
