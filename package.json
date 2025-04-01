@@ -1,5 +1,0 @@
-{
-  "name": "amazon_scraper",
-  "workspaces": ["frontend", "backend"],
-  "packageManager": "bun"
-}
