@@ -1,6 +1,7 @@
 import { Header } from './components/Header.js';
 import { SearchInput } from './components/SearchInput.js';
-import { Results } from './components/Results.js';
+import Results from './components/Results.js';
+import FetchData from './utility/FetchData.js';
 
 class App {
     constructor() {
@@ -11,20 +12,18 @@ class App {
     }
 
     async handleSearch(keyword) {
+        const input = document.querySelector("#keyword");
+        input.placeholder = "Enter search word.";
+        input.classList.remove("invalid-input");
         if (!keyword) {
-            alert('Please enter a search keyword.');
+            input.placeholder = "Please enter a search!!";
+            input.classList.add("invalid-input");
             return;
         }
 
-        this.results.update([{ title: 'Loading...', imageUrl: '', rating: '', reviewCount: '' }]);
+        this.results.loading();
 
-        try {
-            const response = await fetch(`http://localhost:3000/scrape/amazon?q=${encodeURIComponent(keyword)}`);
-            const data = await response.json();
-            this.results.update(data);
-        } catch (error) {
-            this.results.update([{ title: 'Error: ' + error.message, imageUrl: '', rating: '', reviewCount: '' }]);
-        }
+        FetchData.fetchAjax(keyword, this.results);
     }
 
     init() {

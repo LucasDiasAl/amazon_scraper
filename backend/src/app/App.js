@@ -1,15 +1,16 @@
 import express from "express"
 import router from "../routes/ProductRoutes.js"
-import "bun";
+import cors from "cors";
 
 class App {
     constructor() {
+        this.port = process.env["PORT"] || 3000
+        this.instance = null;
         this.app = express();
         this.router = router;
-        this.app.use("/scrape", this.router);
+        this.app.use(cors());
         this.app.use(express.json());
-        this.instance = null;
-        this.port = process.env["PORT"] || 3000
+        this.app.use("/scrape", this.router);
     }
 
     start() {

@@ -6,11 +6,11 @@ import Fetch from "../queries/Fetch.js";
 class AmazonService {
     constructor() {
         this.baseUrl = "https://www.amazon.com/s?k=";
-        this.useAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+        this.useAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/112.0.0.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'"
     }
 
     async fetchHTML(keyword) {
-        const formattedUrl = this.baseUrl.concat(encodeURIComponent(keyword))
+        const formattedUrl = this.baseUrl.concat(encodeURIComponent(keyword));
         return await Fetch.data(formattedUrl, {
             "User-Agent": this.useAgent
         });
@@ -21,7 +21,6 @@ class AmazonService {
         const document = dom.window.document;
 
         const listItemsDiv = document.querySelector('[data-component-type="s-search-results"]') || null;
-
         if(!listItemsDiv) return null;
 
         const products = Array.from(listItemsDiv.querySelectorAll('[cel_widget_id^="MAIN-SEARCH_RESULTS-"]')).map(item => {

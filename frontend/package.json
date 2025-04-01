@@ -1,22 +1,19 @@
 {
   "name": "frontend",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "module": "index.ts",
+  "devDependencies": {
+    "vite": "^6.2.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "vite": "^6.2.0",
-    "@types/bun": "latest"
-  },
-  "module": "index.ts",
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "ajax": "^0.0.4"
-  }
+  "type": "module"
 }

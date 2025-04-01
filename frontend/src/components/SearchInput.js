@@ -10,7 +10,7 @@ export class SearchInput {
         const input = document.createElement('input');
         input.id = 'keyword';
         input.type = 'text';
-        input.placeholder = 'Enter search keyword';
+        input.placeholder = 'Enter search word.';
 
         const button = document.createElement('button');
         button.textContent = 'Scrape';
